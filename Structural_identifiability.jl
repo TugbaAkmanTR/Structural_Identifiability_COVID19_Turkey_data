@@ -52,6 +52,3 @@ ode = @ODEmodel(
 )
 
 println(assess_identifiability(ode, known_ic=[x2,x3,x5,x6,x7,x8,x9]))
-
-
-assess_local_identifiability(ode)
