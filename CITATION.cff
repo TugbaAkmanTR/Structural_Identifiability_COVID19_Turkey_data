@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Akman"
+  given-names: "Tugba"
+  orcid: "https://orcid.org/0000-0003-1206-2287"
+title: "My Research Software"
+date-released: 2024-12-12
+url: "https://github.com/TugbaAkmanTR/Structural_Identifiability_COVID19_Turkey_data"
