@@ -4,7 +4,7 @@ using StructuralIdentifiability
 
 ode = @ODEmodel(
     x1'(t) =  -(betae*x2(t) + betan*x3(t) + betas*x4(t))*(x1(t)/(x1(t)+x2(t)+x3(t)+x4(t)+x8(t))) - eta*x1(t),
-    x2'(t) = (betae*x2(t) + betae*x3(t) + betas*x4(t))*(x1(t)/(x1(t)+x2(t)+x3(t)+x4(t)+x8(t))) - (1/14)*x2(t),
+    x2'(t) = (betae*x2(t) + betan*x3(t) + betas*x4(t))*(x1(t)/(x1(t)+x2(t)+x3(t)+x4(t)+x8(t))) - (1/14)*x2(t),
     x3'(t) = (1-rho)*(1/14)*x2(t) - (gamman)*x3(t),
     x4'(t) = rho*(1/14)*x2(t) - (alpha1+gammas)*x4(t),
     x5'(t) = alpha1*x4(t) - (alpha2+gammah + muh)*x5(t),
