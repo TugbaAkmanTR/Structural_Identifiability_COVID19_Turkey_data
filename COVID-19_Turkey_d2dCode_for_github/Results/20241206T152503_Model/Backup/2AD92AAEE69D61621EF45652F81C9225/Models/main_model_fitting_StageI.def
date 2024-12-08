@@ -1,0 +1,74 @@
+DESCRIPTION
+
+
+PREDICTOR
+t	T	days	time	0	82 // 24
+
+COMPARTMENTS
+//utopia 	C	num	num	1
+utopia X num num 1
+
+
+STATES
+Susc   C humans num utopia 1	"Susc"  1
+Expo   C humans num utopia 1	"Expo" 1
+In     C humans num utopia 1	"In" 1
+Is     C humans num utopia 1	"Is" 1
+Ih     C humans num utopia 1   "Ih" 1
+Iicu     C humans num utopia 1   "Iicu" 1
+Iv     C humans num utopia 1   "Iv" 1
+Rec    C humans num utopia 1   "Rec" 1
+Qu   C beds num utopia 1	"Qu" 1
+
+
+INPUTS
+
+ODES
+"-((betae*Expo*Susc + betan*In*Susc + betas*Is*Susc)/(Npop-Ih-Iicu-Iv-Qu)) - eta*Susc"
+"((betae*Expo*Susc + betan*In*Susc + betas*Is*Susc)/(Npop-Ih-Iicu-Iv-Qu)) - k*Expo"
+"(1-rho)*k*Expo - gamman*In"
+"rho*k*Expo - (alpha1 + gammas)*Is"
+"alpha1*Is - (alpha2 + gammah + muh)*Ih"
+"alpha2*Ih - (alpha3 + gammaicu + muicu)*Iicu"
+"alpha3*Iicu - (gammav+muv)*Iv"
+"gamman*In + gammas*Is + gammah*Ih + gammaicu*Iicu + gammav*Iv"
+"eta*Susc"
+
+DERIVED
+Npop    C cp num  "Susc  + Expo + In + Is + Ih + Iicu + Iv + Rec + Qu"
+        
+OBSERVABLES
+Cases C humans num	0	0	"(1/14)*rho*Expo"
+Death C humans num	0	0	"muh*Ih + muicu*Iicu + muv*Iv"
+ICU C humans num	0	0	"Iicu"
+Ivent C humans num	0	0	"Iv"
+//Recovered C humans num	0	0	"gamman*In + gammas*Is + gammah*Ih + gammaicu*Iicu + gammav*Iv"
+
+ERRORS
+Cases    "sd_Cases"
+Death    "sd_Death"
+ICU     "sd_icu"
+Ivent "sd_ventilation"
+//Recovered "sd_rec"
+
+CONDITIONS
+//eta "0.2"
+k "1/14" // Necibe
+gammas "1/2.9"// NYC paper "0.03" 
+gamman "1/7" // Plos Comp Bio NYC paper [38]
+init_Susc    "80000000"
+init_Expo    "437" // our paper
+init_In "490" // our paper
+init_Is "1" // data
+init_Ih "0"
+init_Iicu "0"
+init_Iv "0"
+init_Rec "0"
+init_Qu "0"
+muicu "0.0605032"
+muv "0.000293138"
+gammav "0.239209" // our paper
+gammaicu "0.231285" / / our paper
+muh "0.000001"
+gammah "0.1449" // NYC paper
+rho "0.28" // our paper

@@ -1,0 +1,23 @@
+DESCRIPTION
+"data_Cases.def file template"
+
+PREDICTOR
+t	T	"days"	"time"	0	82
+
+INPUTS
+
+OBSERVABLES
+Cases C humans num	0	0	"(1/14)*rho*Expo"
+Death C humans num	0	0	"muh*Ih + muicu*Iicu + muv*Iv"
+ICU C humans num	0	0	"Iicu"
+Ivent C humans num	0	0	"Iv"
+ 
+
+ERRORS
+Cases    "sd_Cases"
+Death    "sd_Death"
+ICU     "sd_icu"
+Ivent "sd_ventilation"
+ 
+
+CONDITIONS
